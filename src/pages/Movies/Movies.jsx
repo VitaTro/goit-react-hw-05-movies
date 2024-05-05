@@ -11,11 +11,11 @@ const Movies = () => {
 
   const { query: actualQuery } = searchParams;
 
-  const showFetchedMovies = async query => {
+  const showFetchedSearchMovies = async query => {
     setLoading(true);
     try {
-      const fetchedMovies = await fetchSearchQuery(query);
-      setMovies([...fetchedMovies]);
+      const fetchedSearchQuery = await fetchSearchQuery(query);
+      setMovies([...fetchedSearchQuery]);
     } catch (error) {
       console.log(error);
     } finally {
@@ -26,7 +26,7 @@ const Movies = () => {
   useEffect(() => {
     setMovies([]);
     if (actualQuery) {
-      showFetchedMovies(actualQuery);
+      showFetchedSearchMovies(actualQuery);
     }
   }, [actualQuery]);
   return (
