@@ -20,7 +20,7 @@ const Cast = () => {
     showFetchedCastMovies(movieId);
   }, [movieId]);
 
-  if (cast && cast.length > 0) {
+  if (cast) {
     return (
       <div>
         <ul>
