@@ -1,5 +1,5 @@
 import { fetchSearchQuery } from 'components/Api';
-import Loader from 'components/Loader/Loader';
+
 import SearchBar from 'components/SearchBar/SearchBar';
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
@@ -32,7 +32,7 @@ const Movies = () => {
   return (
     <>
       <SearchBar onSubmit={e => setSearchParams({ query: e })} />
-      {loading && <Loader />}
+      {loading && <div>Loading...</div>}
       {movies.length > 0 ? (
         <ul>
           {movies.map(movie => {
