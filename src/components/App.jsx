@@ -9,9 +9,11 @@ import Reviews from './Reviews/Reviews';
 
 const StyledLink = styled(NavLink)`
   color: black;
+  font-size: 30px;
 
   &.active {
     color: orange;
+    font-size: 30px;
   }
 `;
 

@@ -1,28 +1,58 @@
-import PropTypes from 'prop-types';
+import { fetchSearchQuery } from 'components/Api';
+import Loader from 'components/Loader/Loader';
+import SearchBar from 'components/SearchBar/SearchBar';
+import { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 
-const Movies = props => {
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const query = form.elements.query.value;
-    props.onSubmit({ query });
+const Movies = () => {
+  const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(false);
+
+  const { query: actualQuery } = searchParams;
+
+  const showFetchedMovies = async query => {
+    setLoading(true);
+    try {
+      const fetchedMovies = await fetchSearchQuery(query);
+      setMovies([...fetchedMovies]);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        name="query"
-        type="text"
-        autoComplete="off"
-        autoFocus
-        placeholder="Search movie"
-      />
-      <button type="submit">Search</button>
-    </form>
-  );
-};
 
-Movies.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  useEffect(() => {
+    setMovies([]);
+    if (actualQuery) {
+      showFetchedMovies(actualQuery);
+    }
+  }, [actualQuery]);
+  return (
+    <>
+      <SearchBar onSubmit={e => setSearchParams({ query: e })} />
+      {loading && <Loader />}
+      {movies.length > 0 ? (
+        <ul>
+          {movies.map(movie => {
+            return (
+              <li key={movie.id}>
+                <Link
+                  to={`${movie.id}`}
+                  state={{ from: `/movies/?${searchParams}` }}
+                >
+                  {movie.title}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        actualQuery && !loading && <div>Nothing found. Try again</div>
+      )}
+    </>
+  );
 };
 
 export default Movies;

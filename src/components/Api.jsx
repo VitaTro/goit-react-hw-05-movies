@@ -31,7 +31,7 @@ export const fetchDetailsMovie = async id => {
   return response.data;
 };
 
-// повернення груп акторів, які грали у вібраному фільмі
+// повернення груп акторів, які грали у вибраному фільмі
 export const fetchCastMovie = async id => {
   const target = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${APIKEY}&language=en-US`;
 
