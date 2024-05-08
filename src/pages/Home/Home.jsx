@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 const Home = () => {
   const [trending, setTrending] = useState([]);
+
   const seeTrending = async () => {
     try {
       const fetchedMovies = await fetchTrendingMovies();

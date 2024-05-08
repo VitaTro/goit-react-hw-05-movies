@@ -9,7 +9,7 @@ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
 
-  const { query: actualQuery } = searchParams;
+  const actualQuery = searchParams.get('query'); // тут треба було додати .get('query') і тоді з'явились фільми по пошуку
 
   const showFetchedSearchMovies = async query => {
     setLoading(true);
@@ -31,7 +31,7 @@ const Movies = () => {
   }, [actualQuery]);
   return (
     <>
-      <SearchBar onSubmit={e => setSearchParams({ query: e })} />
+      <SearchBar onSubmit={e => setSearchParams({ query: e })}></SearchBar>
       {loading && <div>Loading...</div>}
       {movies.length > 0 ? (
         <ul>
