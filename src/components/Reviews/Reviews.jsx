@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 const Reviews = () => {
   const [reviews, setReviews] = useState();
 
-  const showFetchReviewsMovie = async review_id => {
-    const fetchedReviewMovie = await fetchReviewsMovie(review_id);
+  const showFetchReviewsMovie = async id => {
+    const fetchedReviewMovie = await fetchReviewsMovie(id);
     setReviews(fetchedReviewMovie);
   };
   const { movieId } = useParams();
@@ -18,6 +18,7 @@ const Reviews = () => {
   if (reviews) {
     return (
       <ul>
+        {!reviews[0] ? 'We dont have any reviews for this movie.' : ''}
         {reviews.map(e => {
           return (
             <li key={e.id}>
