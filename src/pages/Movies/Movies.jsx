@@ -1,8 +1,8 @@
 import { fetchSearchQuery } from 'components/Api';
-
 import SearchBar from 'components/SearchBar/SearchBar';
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import css from './Movies.module.css';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -29,6 +29,7 @@ const Movies = () => {
       showFetchedSearchMovies(actualQuery);
     }
   }, [actualQuery]);
+
   return (
     <>
       <SearchBar onSubmit={e => setSearchParams({ query: e })}></SearchBar>
@@ -49,7 +50,8 @@ const Movies = () => {
           })}
         </ul>
       ) : (
-        actualQuery && !loading && <div>Nothing found. Try again</div>
+        actualQuery &&
+        !loading && <div className={css.nothing}>Nothing found. Try again.</div>
       )}
     </>
   );

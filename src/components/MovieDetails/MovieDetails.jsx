@@ -1,11 +1,12 @@
 import { fetchDetailsMovie } from 'components/Api';
 import { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState();
   let location = useLocation();
-  const backLink = location.state?.from ?? '/';
+  const backLinkHref = location.state?.from ?? '/';
 
   const showFetchedDetailsMovie = async id => {
     try {
@@ -25,10 +26,12 @@ const MovieDetails = () => {
   if (movie) {
     return (
       <>
-        <div>
+        <div className={css.container}>
           <div>
-            <Link to={backLink}>
-              <button type="button">← GO BACK</button>
+            <Link to={backLinkHref} className={css.link}>
+              <button type="button" className={css['back-button']}>
+                ← GO BACK
+              </button>
             </Link>
             <img
               src={
@@ -39,7 +42,7 @@ const MovieDetails = () => {
               alt={`${movie.title}`}
             />
           </div>
-          <div>
+          <div className={css.details}>
             <h2>{movie.title}</h2>
             <span>User score: {Math.round(movie.vote_average * 10)}%</span>
             <h3>Overview</h3>
@@ -53,16 +56,16 @@ const MovieDetails = () => {
             </p>
           </div>
         </div>
-        <div>
+        <div className={css.additional}>
           Additional information:
           <ul>
             <li>
-              <Link to="cast" state={{ from: `${backLink}` }}>
+              <Link to="cast" state={{ from: `${backLinkHref}` }}>
                 Cast
               </Link>
             </li>
             <li>
-              <Link to="reviews" state={{ from: `${backLink}` }}>
+              <Link to="reviews" state={{ from: `${backLinkHref}` }}>
                 Reviews
               </Link>
             </li>
@@ -77,5 +80,4 @@ const MovieDetails = () => {
     );
   }
 };
-
 export default MovieDetails;

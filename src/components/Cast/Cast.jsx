@@ -1,9 +1,10 @@
 import { fetchCastMovie } from 'components/Api';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import css from './Cast.module.css';
 
 const Cast = () => {
-  const [cast, setCast] = useState([]);
+  const [cast, setCast] = useState();
 
   const showFetchedCastMovies = async id => {
     const fetchedCastMovie = await fetchCastMovie(id);
@@ -23,7 +24,7 @@ const Cast = () => {
         <ul>
           {cast.map(e => {
             return (
-              <li key={e.id}>
+              <li key={e.id} className={css.item}>
                 <img
                   src={
                     e.profile_path
@@ -32,7 +33,6 @@ const Cast = () => {
                   }
                   alt={e.name}
                 />
-
                 <div>
                   <h3>Additional information</h3>
                   <p>Name: {e.name}</p>

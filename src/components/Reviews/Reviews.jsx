@@ -1,18 +1,20 @@
-import { fetchReviewsMovie } from 'components/Api';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { fetchReviewsMovie } from '../Api';
+import css from './Reviews.module.css';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState();
 
-  const showFetchReviewsMovie = async id => {
-    const fetchedReviewMovie = await fetchReviewsMovie(id);
-    setReviews(fetchedReviewMovie);
+  const fetchThisMovieReviews = async id => {
+    const fetchedData = await fetchReviewsMovie(id);
+    setReviews(fetchedData);
   };
+
   const { movieId } = useParams();
 
   useEffect(() => {
-    showFetchReviewsMovie(movieId);
+    fetchThisMovieReviews(movieId);
   }, [movieId]);
 
   if (reviews) {
@@ -21,8 +23,8 @@ const Reviews = () => {
         {!reviews[0] ? 'We dont have any reviews for this movie.' : ''}
         {reviews.map(e => {
           return (
-            <li key={e.id}>
-              <p>Author:{e.author}</p>
+            <li key={e.id} className={css.item}>
+              <p className={css.author}>Author: {e.author}</p>
               <p>{e.content}</p>
             </li>
           );

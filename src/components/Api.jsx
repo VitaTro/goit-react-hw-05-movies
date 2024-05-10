@@ -43,13 +43,13 @@ export const fetchCastMovie = async id => {
 };
 
 //   повернення рецензії вибраного фільму
-export const fetchReviewsMovie = async review_id => {
-  const target = `https://api.themoviedb.org/3/review/${review_id}?api_key=${APIKEY}`;
+export const fetchReviewsMovie = async id => {
+  const target = `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${APIKEY}&language=en-US&page=1`;
   const response = await axios.get(target);
   // вираз повертає ВСІ дані, які я отримала з API.
   // корисно, коли треба отримати загальне інфо про фільм
   // (заголовок, опис, рік випуску, рейтинг ітд)
-  return response.data;
+  return response.data.results;
 };
 const Api = {
   fetchTrendingMovies,
