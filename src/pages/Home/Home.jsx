@@ -1,7 +1,7 @@
 import { fetchTrendingMovies } from 'components/Api';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import css from './Home.module.css';
+
 import { Container, Image, Item, List, Section, Title } from './Home.styled';
 const Home = () => {
   const [trending, setTrending] = useState([]);

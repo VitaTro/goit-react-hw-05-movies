@@ -1,7 +1,18 @@
 import { fetchDetailsMovie } from 'components/Api';
 import { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
-import css from './MovieDetails.module.css';
+
+import {
+  Button,
+  Buttons,
+  Description,
+  DescriptionContainer,
+  Image,
+  Infos,
+  Overview,
+  Section,
+  Title,
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState();
@@ -18,7 +29,8 @@ const MovieDetails = () => {
   };
 
   const { movieId } = useParams();
-
+  const defaultImg =
+    'https://lascrucesfilmfest.com/wp-content/uploads/2018/01/no-poster-available.jpg';
   useEffect(() => {
     showFetchedDetailsMovie(movieId);
   }, [movieId]);
@@ -26,56 +38,48 @@ const MovieDetails = () => {
   if (movie) {
     return (
       <>
-        <div className={css.container}>
-          <div>
-            <Link to={backLinkHref} className={css.link}>
-              <button type="button" className={css['back-button']}>
-                ← GO BACK
-              </button>
-            </Link>
-            <img
-              src={
-                movie.poster_path
-                  ? `https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`
-                  : `https://via.placeholder.com/220x330?text=Theres+no+photo`
-              }
-              alt={`${movie.title}`}
-            />
-          </div>
-          <div className={css.details}>
-            <h2>{movie.title}</h2>
-            <span>User score: {Math.round(movie.vote_average * 10)}%</span>
-            <h3>Overview</h3>
-            <p>{movie.overview ? movie.overview : "There's no overview"}</p>
-            <h3>Generes</h3>
-            <p>
-              {movie.genres &&
-                movie.genres.map(e => {
-                  return `${e.name} `;
-                })}
-            </p>
-          </div>
-        </div>
-        <div className={css.additional}>
-          Additional information:
-          <ul>
-            <li>
-              <Link to="cast" state={{ from: `${backLinkHref}` }}>
-                Cast
-              </Link>
-            </li>
-            <li>
-              <Link to="reviews" state={{ from: `${backLinkHref}` }}>
-                Reviews
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <Section>
+          <Link to={backLinkHref}>
+            <Button type="button">← GO BACK</Button>
+          </Link>
 
-        {/* можна використовувати його для визначення, як обробляти запасний вміст під час очікування асинхронних дій та для інкапсуляції будь-якої частини дерева компонентів */}
-        <Suspense fallback={<div>Loading...</div>}>
-          <Outlet></Outlet>
-        </Suspense>
+          <DescriptionContainer>
+            {movie && (
+              <Infos>
+                <Image
+                  src={
+                    movie.poster_path
+                      ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                      : defaultImg
+                  }
+                  alt={movie.title}
+                />
+                <Description>
+                  <Title>
+                    {movie.title} ({movie.release_date.split('-')[0]})
+                  </Title>
+                  <p>{movie.genres.map(genre => genre.name).join(' | ')}</p>
+                  <Overview>
+                    <h3>Overview</h3>
+                    <p>{movie.overview}</p>
+                  </Overview>
+                  <p>User Score: {movie.vote_average * 10}%</p>
+                  <Buttons>
+                    <div key="cast">
+                      <Link to={`cast`}>Cast</Link>
+                    </div>
+                    <div key="reviews">
+                      <Link to={`reviews`}>Reviews</Link>
+                    </div>
+                  </Buttons>
+                </Description>
+              </Infos>
+            )}
+          </DescriptionContainer>
+          <Suspense fallback={<div>Loading page...</div>}>
+            <Outlet />
+          </Suspense>
+        </Section>
       </>
     );
   }
