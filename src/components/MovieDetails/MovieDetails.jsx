@@ -1,9 +1,10 @@
 import { fetchDetailsMovie } from 'components/Api';
 import { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
-
 import {
   Button,
+  ButtonCast,
+  ButtonReview,
   Buttons,
   Description,
   DescriptionContainer,
@@ -31,6 +32,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const defaultImg =
     'https://lascrucesfilmfest.com/wp-content/uploads/2018/01/no-poster-available.jpg';
+
   useEffect(() => {
     showFetchedDetailsMovie(movieId);
   }, [movieId]);
@@ -42,7 +44,6 @@ const MovieDetails = () => {
           <Link to={backLinkHref}>
             <Button type="button">← GO BACK</Button>
           </Link>
-
           <DescriptionContainer>
             {movie && (
               <Infos>
@@ -65,12 +66,12 @@ const MovieDetails = () => {
                   </Overview>
                   <p>User Score: {movie.vote_average * 10}%</p>
                   <Buttons>
-                    <div key="cast">
+                    <ButtonCast key="cast">
                       <Link to={`cast`}>Cast</Link>
-                    </div>
-                    <div key="reviews">
+                    </ButtonCast>
+                    <ButtonReview key="reviews">
                       <Link to={`reviews`}>Reviews</Link>
-                    </div>
+                    </ButtonReview>
                   </Buttons>
                 </Description>
               </Infos>
@@ -84,4 +85,5 @@ const MovieDetails = () => {
     );
   }
 };
+
 export default MovieDetails;

@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Section = styled.section`
-  border-bottom: 1 ridge rgb(146, 41, 144, 0.6);
   padding-left: 70px;
   padding-bottom: 40px;
   padding-right: 70px;
@@ -14,13 +13,20 @@ export const Section = styled.section`
   }
 `;
 export const Button = styled.button`
-  margin-top: 10px;
+  margin-top: 20px;
+  background-color: #fffab2;
+  border: 2px solid orange;
+  border-radius: 7px;
+  font-size: 20px;
+  color: #9183fe;
 `;
-export const Title = styled.h2``;
+export const Title = styled.h2`
+  color: #696931;
+`;
 
 export const Image = styled.img`
   border-radius: 6px;
-  max-height: 350px;
+  max-height: 450px;
   box-shadow: 0px 0px 5px 1px rgba(200, 200, 200, 1);
 `;
 
@@ -53,32 +59,36 @@ export const DescriptionContainer = styled.div`
 `;
 
 export const Link = styled(NavLink)`
-  padding: 4px 8px;
-  border-radius: 4px;
-  box-shadow: 0px 0px 5px 1px rgba(200, 200, 200, 1);
   text-decoration: none;
-  color: rgb(20, 20, 20);
-  font-weight: 600;
-
-  &:visited {
-    color: rgb(50, 50, 50);
-  }
-
-  &.active {
-    text-decoration: 3px underline rgb(146, 41, 144, 0.6);
-  }
-  &:hover {
-    box-shadow: inset 0px 0px 5px 1px rgba(200, 200, 200, 1);
-  }
+  list-style: none;
 `;
 
 export const Buttons = styled.div`
   display: flex;
-  gap: 10px;
-  margin-top: 50px;
+  margin-left: 60px;
+  gap: 40px;
+  margin-top: 30px;
+  text-decoration: none;
 `;
 
+export const ButtonCast = styled.button`
+  background-color: #e0e0e070;
+  border: 3px solid gray;
+  border-radius: 7px;
+  font-size: 25px;
+  color: #9183fe;
+  text-decoration: none;
+`;
+export const ButtonReview = styled.button`
+  background-color: #e0e0e070;
+  border: 3px solid gray;
+  border-radius: 7px;
+  font-size: 25px;
+  color: #9183fe;
+  text-decoration: none;
+`;
 export const Overview = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
+  color: #696971;z
 `;
