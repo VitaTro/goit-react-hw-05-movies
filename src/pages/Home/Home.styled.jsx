@@ -1,15 +1,12 @@
 import styled from 'styled-components';
 
-export const Section = styled.section`
-  background-color: bisque;
-`;
-
 export const Title = styled.h1`
   font-size: 44px;
   margin: 0 auto;
   text-align: center;
   padding: 25px;
-  color: brown;
+  color: lightgrey;
+  text-shadow: 0 0 5px rgb(67, 182, 208);
 `;
 export const List = styled.ul`
   display: flex;
@@ -28,7 +25,7 @@ export const Item = styled.li`
   align-items: center;
   transition: all 0.2s ease-in-out;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
 `;
 export const Image = styled.img`
@@ -38,8 +35,8 @@ export const Image = styled.img`
 export const Container = styled.div`
 
   font-size: 25px;
-  color: brown;
-  font-weight: 400;
+  color: #F2EB9A;
+  font-weight: 600;
   text-align: center;
   padding-bottom: 10px;
   margin-top: 15px;

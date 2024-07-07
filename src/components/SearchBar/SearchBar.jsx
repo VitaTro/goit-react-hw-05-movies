@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import css from './SearchBar.module.css';
 
+import { Button, Form, Input } from './SearchBar.styled';
 const SearchBar = props => {
   const handleSubmit = e => {
     e.preventDefault();
@@ -10,19 +10,16 @@ const SearchBar = props => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        className={css.input}
+    <Form onSubmit={handleSubmit}>
+      <Input
         name="query"
         type="text"
         autoComplete="off"
         autoFocus
         placeholder="Search movie"
       />
-      <button type="submit" className={css.button}>
-        Search
-      </button>
-    </form>
+      <Button type="submit">Search</Button>
+    </Form>
   );
 };
 

@@ -2,7 +2,7 @@ import { fetchTrendingMovies } from 'components/Api';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Container, Image, Item, List, Section, Title } from './Home.styled';
+import { Container, Image, Item, List, Title } from './Home.styled';
 const Home = () => {
   const [trending, setTrending] = useState([]);
   const defaultImg =
@@ -21,7 +21,7 @@ const Home = () => {
   }, []);
   return (
     <>
-      <Section>
+      <section>
         <Title>Trending today</Title>
         <List>
           {trending &&
@@ -43,7 +43,7 @@ const Home = () => {
               </Item>
             ))}
         </List>
-      </Section>
+      </section>
     </>
   );
 };

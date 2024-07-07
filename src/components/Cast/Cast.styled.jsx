@@ -18,7 +18,8 @@ export const Caption = styled.caption`
   text-align: center;
   padding-bottom: 40px;
   padding-top: 20px;
-  color: brown;
+  color: lightgrey;
+  text-shadow: 0 0 5px rgb(67, 182, 208);
 `;
 
 export const Tbody = styled.tbody`

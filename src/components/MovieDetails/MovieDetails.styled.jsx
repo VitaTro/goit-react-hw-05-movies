@@ -21,7 +21,7 @@ export const Button = styled.button`
   color: #9183fe;
 `;
 export const Title = styled.h2`
-  color: #696931;
+  color: #fffab2;
 `;
 
 export const Image = styled.img`
@@ -48,7 +48,7 @@ export const Description = styled.div`
   padding: 18px;
   background-color: #e0e0e070;
   box-shadow: 0px 0px 5px 1px rgba(200, 200, 200, 1);
-
+  color: white;
   @media (max-width: 768px) {
     margin: 0;
   }
@@ -90,5 +90,5 @@ export const ButtonReview = styled.button`
 export const Overview = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
-  color: #696971;z
+  color: white;
 `;
